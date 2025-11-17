@@ -7,8 +7,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 FROM base AS install
-COPY ./src /src
-WORKDIR /src
-RUN Rscript install.R && \
+COPY ./src /tmp
+RUN Rscript /tmp/install.R && \
+    rm /tmp/install.R && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
